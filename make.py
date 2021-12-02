@@ -67,6 +67,19 @@ class AcornPCIe(Board):
             "pcie",
         }, bitstream_ext=".bit")
 
+# Alinx AX7101 --------------------------------------------------------------------------------
+
+class Ax7101(Board):
+    def __init__(self):
+        from litex_boards.targets import alinx_ax7101
+        Board.__init__(self, alinx_ax7101.BaseSoC, soc_capabilities={
+            # Communication
+            "serial",
+            "ethernet"
+            # Storage
+            #"sdcard",
+        }, bitstream_ext=".bit")
+
 # Arty support -------------------------------------------------------------------------------------
 
 class Arty(Board):
@@ -540,6 +553,7 @@ supported_boards = {
     # Xilinx
     "acorn":            Acorn,
     "acorn_pcie":       AcornPCIe,
+    "ax7101":           Ax7101,
     "arty":             Arty,
     "arty_a7":          ArtyA7,
     "arty_s7":          ArtyS7,
