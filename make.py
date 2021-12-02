@@ -75,7 +75,7 @@ class Ax7101(Board):
         Board.__init__(self, alinx_ax7101.BaseSoC, soc_capabilities={
             # Communication
             "serial",
-            "ethernet"
+            "ethernet",
             # Storage
             #"sdcard",
         }, bitstream_ext=".bit")
@@ -553,7 +553,7 @@ supported_boards = {
     # Xilinx
     "acorn":            Acorn,
     "acorn_pcie":       AcornPCIe,
-    "ax7101":           Ax7101,
+    "alinx_ax7101":     Ax7101,
     "arty":             Arty,
     "arty_a7":          ArtyA7,
     "arty_s7":          ArtyS7,

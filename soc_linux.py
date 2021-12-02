@@ -137,6 +137,7 @@ def SoCLinux(soc_cls, **kwargs):
 
         # Ethernet configuration -------------------------------------------------------------------
         def configure_ethernet(self, local_ip, remote_ip):
+            print("HELLO")
             local_ip  = local_ip.split(".")
             remote_ip = remote_ip.split(".")
 
