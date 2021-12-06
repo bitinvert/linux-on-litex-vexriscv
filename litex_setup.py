@@ -73,22 +73,6 @@ def litex_setup_location_check():
         global current_path
         current_path = os.path.join(current_path, "../")
 
-def litex_setup_auto_update():
-    litex_setup_url = "https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py"
-    current_sha1 = hashlib.sha1(open(os.path.realpath(__file__)).read().encode("utf-8")).hexdigest()
-    print("[Checking litex_setup.py]...")
-    try:
-        import requests
-        r = requests.get(litex_setup_url)
-        if r.status_code != 404:
-            upstream_sha1 = hashlib.sha1(r.content).hexdigest()
-            if current_sha1 != upstream_sha1:
-                print("[Updating litex_setup.py]...")
-                with open(os.path.realpath(__file__), "wb") as f:
-                    f.write(r.content)
-                os.execl(sys.executable, sys.executable, *sys.argv)
-    except:
-        pass
 
 # Repositories Initialization ----------------------------------------------------------------------
 
@@ -245,8 +229,6 @@ def main():
 
     # Location/Auto-Update.
     litex_setup_location_check()
-    if not args.dev:
-        litex_setup_auto_update()
 
     # Init.
     if args.init:

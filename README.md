@@ -14,6 +14,40 @@
 [![](https://github.com/litex-hub/linux-on-litex-vexriscv/workflows/ci/badge.svg)](https://github.com/litex-hub/linux-on-litex-vexriscv/actions) ![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)
 > **Note:** Tested on Ubuntu 18.04.
 
+# For this Fork
+
+## Installing LiteX
+```sh
+$ chmod +x litex_setup.py
+$ ./litex_setup.py init install --user (--user to install to user directory)
+$ pip3 install meson
+$ pip3 install ninja
+```
+This should pull all the necessary dependencies, in this case the specific fork of the Alinx AX7101 board file
+
+## Building the new Board
+```sh
+$ ./make.py --board=alinx_ax7101 --cpu-count=1 --build
+```
+
+## Loading it on the Board
+```sh
+$ mkdir prog
+$ cp ../litex-boards/litex-boards/prog/openocd_ax7101.cfg ./prog
+$ ./make.py --board=alinx_ax7101 --load
+```
+
+In an seperate terminal load the the necessary files to the board
+
+```sh
+$ lxterm --images=images/boot.json /dev/ttyUSB0 --speed=921600
+```
+
+Unfortunately openOCD is still crashing at this point of writing, a fix has to be found
+
+
+# Old README
+
 ## Intro:
 In this repository, we experiment running Linux with [VexRiscv](https://github.com/SpinalHDL/VexRiscv) CPU, a 32-bits Linux Capable RISC-V CPU written in Spinal HDL. A SoC around the VexRiscv CPU is created using LiteX as the SoC builder and LiteX's cores written in Migen Python DSL (LiteDRAM, LiteEth, LiteSDCard). All the components used to create the SoC are open-source and the flexibility of Spinal HDL/Migen allow targeting easily very various FPGA devices/boards: Lattice, Altera, Xilinx, Microsemi FPGAs with SDRAM/DDR/DDR2/DDR3/DDR4 RAMs, RMII/MII/RGMII/1000BASE-X Ethernet PHYs. On Lattice ECP5 FPGAs, the [open source toolchain](https://github.com/SymbiFlow/prjtrellis) allows creating full open-source SoC with open-source cores **and** toolchain!
 
