@@ -77,7 +77,7 @@ class Ax7101(Board):
             "serial",
             "ethernet",
             # Storage
-            #"sdcard",
+            "sdcard",
         }, bitstream_ext=".bit")
 
 # Arty support -------------------------------------------------------------------------------------
